@@ -2,8 +2,12 @@ const express = require("express");
 const app = express();
 const connect = require("./db/db");
 
+const userRouter = require("./controller/user.controller");
+
 app.use(express.json());
 
+
+app.use("/user", userRouter);
 
 async function start() {
   await connect();
