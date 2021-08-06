@@ -44,9 +44,7 @@ router.post("/signin", async (req, res) => {
         .status(401)
         .json({ message: "Email or Password is Incorrect" });
     }
-
     const match = await user.checkPassword(req.body.password);
-
     if (!match) {
       return res
         .status(401)
