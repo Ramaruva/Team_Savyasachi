@@ -4,7 +4,9 @@ import {TextField,MenuItem, Button} from "@material-ui/core"
 import Categories from "../Data/Categories"
 import {useHistory} from "react-router"
 import {ErrorMessage} from "../Error/ErrorMessage"
-import fetchQuestions from "../Quiz"
+import {fetchQuestions} from "../../../Redux/Quiz/action"
+import {useDispatch} from "react-redux"
+
 
 function Pages(){
     const [name,setName] = useState("")
@@ -13,6 +15,8 @@ function Pages(){
     const [difficulty,setDifficulty] = useState("")
     const history = useHistory()
 
+    const dispatch = useDispatch()
+
     const handleSubmit = () =>{
         if(!category || !difficulty || !name){
             setError(true);
@@ -20,7 +24,8 @@ function Pages(){
         }
         else{
             setError(false)
-            fetchQuestions(category,difficulty)
+
+            dispatch(fetchQuestions(category,difficulty))
             history.push("/quiz/questions")
         }
     }
