@@ -10,13 +10,19 @@ const newToken = (user) => {
 };
 router.post(
   "/signup",
-  body("name").trim().not().isEmpty().withMessage("Name Cannot be Empty"),
+  body("first_name").trim().not().isEmpty().withMessage("First Name Cannot be Empty"),
+  body("last_name").trim().not().isEmpty().withMessage("Last Name Cannot be Empty"),
   body("email").isEmail().withMessage("Please enter a valid Email Address"),
   body("password")
     .trim()
     .isLength({ min: 8 })
     .withMessage("Password length should be 8 or more"),
     body("type").trim().not().isEmpty().withMessage("Type cannot be Empty"),
+    body("qualification").trim().not().isEmpty().withMessage("Qualification Cannot be Empty"),
+    body("phone")
+    .trim()
+    .isLength({ min: 10,max:10 })
+    .withMessage("Phone Number must be 10 digits"),
   async (req, res) => {
     const result = validationResult(req);
     if (!result.isEmpty()) {
