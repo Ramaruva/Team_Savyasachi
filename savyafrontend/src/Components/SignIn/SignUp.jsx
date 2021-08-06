@@ -1,30 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,9 +35,60 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export  function SignUp() {
-  const classes = useStyles();
+const init = {
+  fname: "",
+  lname: "",
+  phone: "",
+  email: "",
+  psd: "",
+  qualification: "",
+  category:""
+}
 
+export  function SignUp(init) {
+  const classes = useStyles();
+  const [data, setData] = useState(init);
+  const { fname, lname, phone,email, psd, qualification, category } = data;
+
+
+
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+    setData({...data,[name]:value});
+  };
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+    
+    const payload = {
+      firstname: fname,
+      lastname: lname,
+      phone_number: phone,
+      email: email,
+      password: psd,
+      qualification: qualification,
+      category:category
+    }
+
+    console.log(payload)
+
+  }
+
+  const value = [
+    {
+      value: 'select',
+      label: 'Select',
+    },
+    {
+      value: 'student',
+      label: 'Student',
+    },
+    {
+      value: 'teacher',
+      label: 'Teacher',
+    },
+
+  ];
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -66,12 +104,14 @@ export  function SignUp() {
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="fname"
-                name="firstName"
+                name="fname"
                 variant="outlined"
+                value={fname}
                 required
                 fullWidth
                 id="firstName"
                 label="First Name"
+                onChange={handleChange}
                 autoFocus
               />
             </Grid>
@@ -82,7 +122,10 @@ export  function SignUp() {
                 fullWidth
                 id="lastName"
                 label="Last Name"
-                name="lastName"
+                name="lname"
+                onChange={handleChange}
+
+                value={lname}
                 autoComplete="lname"
               />
             </Grid>
@@ -91,9 +134,12 @@ export  function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                onChange={handleChange}
+
                 id="email"
                 label="Email Address"
                 name="email"
+                value={email}
                 autoComplete="email"
               />
             </Grid>
@@ -102,7 +148,10 @@ export  function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                name="password"
+                name="psd"
+                onChange={handleChange}
+
+                value={psd}
                 label="Password"
                 type="password"
                 id="password"
@@ -110,17 +159,66 @@ export  function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                onChange={handleChange}
+
+                value={phone}
+                name="phone"
+                label="Phone-Number"
+                type="number"
+                id="phone-number"
+                autoComplete="current-phone-number"
               />
             </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                onChange={handleChange}
+
+                fullWidth
+                value={qualification}
+                name="qualification"
+                label="Qualification"
+                type="text"
+                id="qualification"
+                autoComplete="current-qualification"
+              />
+            </Grid>
+           
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+              id="outlined-select-currency-native"
+              select
+              label="Native select"
+                value={category}
+                name="category"
+              onChange={handleChange}
+              SelectProps={{
+                native: true,
+              }}
+              helperText="Please select your currency"
+              variant="outlined"
+        >
+          {value.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
+            </Grid>
+           
           </Grid>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             className={classes.submit}
+            onClick={handleSignup}
           >
             Sign Up
           </Button>
@@ -133,9 +231,7 @@ export  function SignUp() {
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
+     
     </Container>
   );
 }
