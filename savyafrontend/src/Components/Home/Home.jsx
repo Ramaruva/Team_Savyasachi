@@ -7,7 +7,7 @@ export const Home = () => {
 
     return (
         <div>
-            <div
+            {/* <div
 				style={{
 					position: "relative",
 					zIndex: "-1",
@@ -20,11 +20,15 @@ export const Home = () => {
                     url='https://youtu.be/kf-Zagr442E'
                     width='99.85%'
                     height='99.85%'
+                    loop="true"
+                    volume="null"
+                    controls
+                    muted="true"
                 />
-			</div>
+			</div> */}
           
            <Carouselsection />
-            
+           
             <div className={styles.edtec}>
                 <div className={styles.minicon}>
                     <h1 className={styles.heading}>The most important gift of all is the gift of education, Distubute your skills to helps students</h1>
