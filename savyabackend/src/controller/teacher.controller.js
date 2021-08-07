@@ -11,8 +11,7 @@ router.post(
   "/register",
   body("first_name").isLength({ min: 1 }).withMessage("Enter the FirstName"),
   body("last_name").isLength({ min: 1 }).withMessage("Enter the LastName"),
-  
-  body("qualification").isEmpty().withMessage("Enter the Qualification"),
+  body("qualification").isLength({min:1}).withMessage("Enter the Qualification"),
   body("email").isEmail().withMessage("Please enter valid email address"),
   body("password")
     .trim()
@@ -20,6 +19,7 @@ router.post(
     .withMessage("Password length should be 8 or more"),
   body("role").isLength({ min: 1 }).withMessage("please enter your role"),
   async (req, res) => {
+    //  console.log(req.body)
     const result = validationResult(req);
     if (!result.isEmpty()) {
       return res.status(401).json({ message: result.array()[0].param });
@@ -61,7 +61,7 @@ router.post(
           .json({ message: "Email or Password is Incorrect" });
       }
       const token = newToken(user);
-      res.status(201).json({ status: "Success", token, userData: user });
+      res.status(201).json({ status: "Success", token, data: user });
     } catch (err) {
         console.log(err)
       return res.status(500).json({ error: "Failed" });
