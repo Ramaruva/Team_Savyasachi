@@ -17,7 +17,7 @@ router.post(
     .trim()
     .isLength({ min: 8 })
     .withMessage("Password length should be 8 or more"),
-    body("type").trim().not().isEmpty().withMessage("Type cannot be Empty"),
+
     body("qualification").trim().not().isEmpty().withMessage("Qualification Cannot be Empty"),
     body("phone")
     .trim()

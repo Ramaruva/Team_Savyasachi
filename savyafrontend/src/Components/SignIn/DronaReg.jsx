@@ -61,13 +61,13 @@ export  function DronaSignUp(init) {
     e.preventDefault();
     
     const payload = {
-      firstname: fname,
-      lastname: lname,
+      firs_tname: fname,
+      last_name: lname,
       phone_number: phone,
       email: email,
       password: psd,
       qualification: qualification,
-      category:category
+      role:category
     }
 
     console.log(payload)

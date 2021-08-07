@@ -42,13 +42,12 @@ const init = {
   email: "",
   psd: "",
   qualification: "",
-  category:""
 }
 
 export  function ArjunaSignUp(init) {
   const classes = useStyles();
   const [data, setData] = useState(init);
-  const { fname, lname, phone,email, psd, qualification, category } = data;
+  const { fname, lname, phone,email, psd, qualification } = data;
 
 
 
@@ -61,34 +60,33 @@ export  function ArjunaSignUp(init) {
     e.preventDefault();
     
     const payload = {
-      firstname: fname,
-      lastname: lname,
+      first_name: fname,
+      last_name: lname,
       phone_number: phone,
       email: email,
       password: psd,
       qualification: qualification,
-      category:category
     }
 
     console.log(payload)
 
   }
 
-  const value = [
-    {
-      value: 'select',
-      label: 'Select',
-    },
-    {
-      value: 'student',
-      label: 'Student',
-    },
-    {
-      value: 'teacher',
-      label: 'Teacher',
-    },
+  // const value = [
+  //   {
+  //     value: 'select',
+  //     label: 'Select',
+  //   },
+  //   {
+  //     value: 'student',
+  //     label: 'Student',
+  //   },
+  //   {
+  //     value: 'teacher',
+  //     label: 'Teacher',
+  //   },
 
-  ];
+  // ];
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
