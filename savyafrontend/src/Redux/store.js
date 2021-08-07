@@ -3,11 +3,15 @@ import thunk from "redux-thunk"
 import { quizReducer } from "./Quiz/reducer";
 import { tlReducer } from "./teacherLogin/tlReducer";
 import { trReducer } from "./teacherRegister/trReducer";
+import { loginReducer } from "./LoginRedux/Loginreducer";
+import { registerReducer } from "./Register/registerreducers";
 
 export const rootReducer = combineReducers({
    quiz:quizReducer,
    tRegister:trReducer,
-   tLogin:tlReducer
+   tLogin:tlReducer,
+	login: loginReducer,
+   register:registerReducer
 
 })
 

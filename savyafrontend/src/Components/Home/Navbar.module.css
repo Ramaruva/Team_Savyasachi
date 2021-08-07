@@ -230,7 +230,7 @@
   
   .toggleTab {
     max-width: 1200px;
-    width: 100%;
+    width: 40%;
     margin: 80px auto 30px;
     display: flex;
     justify-content: space-between;
@@ -239,7 +239,7 @@
   
   .tabButton {
     transition: all 600ms ease;
-    width: 100%;
+    width: 40%;
     border: none;
     border-radius: 2px;
     padding: 15px 20px;
