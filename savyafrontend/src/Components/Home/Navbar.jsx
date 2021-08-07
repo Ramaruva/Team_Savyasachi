@@ -7,6 +7,8 @@ import { FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 function Navbar() {
+
+  
  
 
   return (
