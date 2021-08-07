@@ -13,6 +13,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 // import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { tlogin } from "../../Redux/teacherLogin/tlaction";
+import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -50,8 +52,10 @@ export const Drona = (init) => {
 	const { email, password} = loginData;
 	const classes = useStyles();
 
-	
-	
+   const  tlLoading =useSelector(state=>state.tLogin.tlLoading)
+   const tlFailure=useSelector(state=>state.tLogin.tlFailure)
+   const tlSuccess= useSelector(state=>state.tLogin.tlSuccess)
+
 
 
 	const handleLogin = (e) => {
@@ -61,8 +65,8 @@ export const Drona = (init) => {
 		setloginData({ ...loginData, [name]: value });
 	};
 
-	
-	// const dispatch = useDispatch();
+	 
+	 const dispatch = useDispatch();
 	const Login = (e) => {
 		e.preventDefault();
 		const payload = {
@@ -70,12 +74,13 @@ export const Drona = (init) => {
 			password,
 			
 		};
+		dispatch(tlogin(payload))
 		console.log(payload);
 
 	};
-	const islogin = false;
 
-	return !islogin ? (
+
+	return !tlSuccess ? (
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
 			<div className={classes.paper}>
@@ -129,7 +134,7 @@ export const Drona = (init) => {
 						onClick={Login}
 						className={classes.submit}
 					>
-						Sign In
+						{tlLoading?"..loading":"Sign in"}
 					</Button>
 					<Grid container>
 						<Grid item xs>
@@ -145,6 +150,7 @@ export const Drona = (init) => {
 					</Grid>
 				</form>
 			</div>
+			{tlFailure&&"Something went wrong"}
 		</Container>
 	) : (
 		<Redirect to="/" />
