@@ -3,12 +3,14 @@ import {
 	REGISTER_REQUEST,
 	REGISTER_SUCCESS,
 } from "./registeractionType";
+import {getData,storeData} from "../../Utlis/localStorage"
 
 const regdata = {
 	isLoading: false,
 	isError: false,
-	isAuth: false,
-	istoken: "",
+	isRegister:getData("student_reg_auth")||false,
+	istoken:getData("student_reg_token")||"",
+	user:getData("student_reg_data")||{}
 
 };
 export const registerReducer = (state = regdata, { type, payload }) => {
@@ -20,16 +22,20 @@ export const registerReducer = (state = regdata, { type, payload }) => {
 				isError: false,
 			};
 		case REGISTER_SUCCESS:
+			storeData("student_reg_token",payload.token)
+			storeData("student_reg_data",payload.userData)
+			storeData("student_reg_auth",true)
 			return {
 				...state,
 				isLoading: false,
-				isAuth: true,
-			    payload,
+				isRegister: true,
+				token:payload.token,
+			    user:payload.userData,
 			};
 		case REGISTER_FAILURE:
 			return {
 				...state,
-				isAuth: false,
+				isRegister: false,
 				isLoading: false,
 				isError: true,
 			};

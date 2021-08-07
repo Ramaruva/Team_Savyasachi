@@ -5,9 +5,18 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { GrInstagram } from "react-icons/gr";
 import { FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutSuccess } from "../../Redux/LoginRedux/Loginaction";
 
 function Navbar() {
- 
+
+  const { isAuth } = useSelector(state => state.login);
+
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logoutSuccess());
+  }
+
 
   return (
     <div className={styles.containers}>
@@ -19,21 +28,17 @@ function Navbar() {
       </div>
       <div className={styles.navinfo}>
       <Link to="/learning">Learning</Link>
-      <Link to="/help">Help</Link>
-      <Link to="/signin">
-          <button className={styles.signin}>Sign In</button>
-      </Link>
-      <Link to="/signup">
-          <button className={styles.signup}>Sign Up</button>
-      </Link>
-        {/* <Link href="/profile">
-              <button className={styles.signin}>Profile</button>
-            </Link>
-            <Link href="/">
-              <button className={styles.signup}>
-                Logout
-              </button>
-            </Link> */}
+        <Link to="/help">Help</Link>
+        {isAuth? <Link to="/signin">
+          <button onClick={handleLogout} className={styles.signin}>Sign-Out</button>
+      </Link>:<Link to="/signin">
+          <button className={styles.signin}>Sign-In</button>
+      </Link>}
+      
+      { isAuth?null:<Link to="/signup">
+          <button className={styles.signup}>Sign-Up</button>
+      </Link>}
+        
       </div>
     </div>
   );

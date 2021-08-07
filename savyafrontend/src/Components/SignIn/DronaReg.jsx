@@ -9,6 +9,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../../Redux/teacherRegister/traction';
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -48,8 +51,11 @@ const init = {
 export  function DronaSignUp(init) {
   const classes = useStyles();
   const [data, setData] = useState(init);
-  const { fname, lname, phone,email, psd, qualification, category } = data;
-
+  const { fname, lname, phone,email, psd, qualification, category } = data; 
+  const tloading = useSelector(state=>state.tRegister.tloading)
+  const tsuccess = useSelector(state=>state.tRegister.tsuccess)
+  const tfailure= useSelector(state=>state.tRegister.tfailure)
+  const dispatch = useDispatch()
 
 
   const handleChange = (e) => {
@@ -61,7 +67,7 @@ export  function DronaSignUp(init) {
     e.preventDefault();
     
     const payload = {
-      firs_tname: fname,
+      first_name: fname,
       last_name: lname,
       phone_number: phone,
       email: email,
@@ -69,7 +75,7 @@ export  function DronaSignUp(init) {
       qualification: qualification,
       role:category
     }
-
+      dispatch(register(payload))
     console.log(payload)
 
   }
@@ -89,7 +95,8 @@ export  function DronaSignUp(init) {
     },
 
   ];
-  return (
+
+  return !tsuccess?(
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -220,7 +227,7 @@ export  function DronaSignUp(init) {
             className={classes.submit}
             onClick={handleSignup}
           >
-            Sign Up
+            {tloading?"...loading":"Register"}
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
@@ -230,8 +237,9 @@ export  function DronaSignUp(init) {
             </Grid>
           </Grid>
         </form>
+        {tfailure&&"Something went wrong"}
       </div>
      
     </Container>
-  );
+  ):(<Redirect to= "/signin" />);
 }

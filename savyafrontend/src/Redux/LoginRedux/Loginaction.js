@@ -1,4 +1,4 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "./LoginactionType";
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_SUCCESS } from "./LoginactionType";
 import axios from "axios";
 export const loginRequest = (payload) => {
 	return {
@@ -6,11 +6,12 @@ export const loginRequest = (payload) => {
 		payload,
 	};
 };
-export const loginSuccess = (token, username) => {
+export const loginSuccess = (payload) => {
 	return {
 		type: LOGIN_SUCCESS,
-		payload: token,
-		username: username,
+		payload,
+
+		
 	};
 };
 
@@ -21,19 +22,26 @@ export const loginFailure = (er) => {
 	};
 };
 
+export const logoutSuccess = () => {
+	return {
+		type: LOGOUT_SUCCESS,
+		
+	};
+}
+
 export const loginUser = (payload) => (dispatch) => {
 	const requestAction = loginRequest();
-	const { username, password } = payload;
-	// console.log(username, password);
+
+	// console.log(email, password);
 	dispatch(requestAction);
 	return axios
-		.post("https://masai-api-mocker.herokuapp.com/auth/login", payload)
+		.post("http://localhost:8000/user/signin", payload)
 		.then((res) => {
-			const { username } = payload;
-			const successAction = loginSuccess(res.data.token, username);
-			// console.log(username);
+			
+			const successAction = loginSuccess(res.data);
+			// console.log(email);
 			dispatch(successAction);
-			// console.log(res.data.token);
+			console.log(res.data.token);
 		})
 		.catch((err) => {
 			const failureAction = loginFailure(err.message);
