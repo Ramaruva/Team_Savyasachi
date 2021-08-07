@@ -1,9 +1,13 @@
 import {applyMiddleware, combineReducers, createStore,compose} from "redux" 
 import thunk from "redux-thunk"
 import { quizReducer } from "./Quiz/reducer";
+import { tlReducer } from "./teacherLogin/tlReducer";
+import { trReducer } from "./teacherRegister/trReducer";
 
 export const rootReducer = combineReducers({
-   quiz:quizReducer
+   quiz:quizReducer,
+   tRegister:trReducer,
+   tLogin:tlReducer
 
 })
 
