@@ -11,9 +11,10 @@ import { logoutSuccess } from "../../Redux/LoginRedux/Loginaction";
 function Navbar() {
 
   const { isAuth } = useSelector(state => state.login);
-
+  // const { tlSuccess } = useSelector(state => state.tLogin);
   const dispatch = useDispatch();
   const handleLogout = () => {
+    
     dispatch(logoutSuccess());
   }
 
@@ -27,8 +28,8 @@ function Navbar() {
         </Link>
       </div>
       <div className={styles.navinfo}>
-      <Link to="/learning">Learning</Link>
-        <Link to="/help">Help</Link>
+      <Link to="/learn">Learn</Link>
+        <Link to="/teach">Teach</Link>
         {isAuth? <Link to="/signin">
           <button onClick={handleLogout} className={styles.signin}>Sign-Out</button>
       </Link>:<Link to="/signin">

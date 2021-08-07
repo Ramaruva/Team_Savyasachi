@@ -6,6 +6,8 @@ const { v4: uuidv4 } = require('uuid');
 require("dotenv").config();
 const router = express.Router();
 const Video = require("../model/video.model");
+const uploads = require("../utils/multer");
+
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
@@ -27,14 +29,25 @@ const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 //   const filePath = path.join("C:/Users/ajmal/OneDrive/Desktop/Drona/Team_Savyasachi/savyabackend/src/utils",'zoom_0.mp4')
 // console.log(filePath)
 
+
+
 let datanew = "";
-router.post("/", async (req, res) => {
-datanew = await  uploadFile(req.body.link);
-   console.log(datanew)
+router.post("/",upload.single("video"), async (req, res) => {
+datanew = await  uploadFile( req.file.path);
+    
    setTimeout(async ()=>{
-         
-   req.body.link = datanew;
-      const video = await Video.create(req.body);
+    let obj = {
+        title:req.body.title,
+        link:datanew,
+        views:req.body.views||0,
+        rating:req.body.rating||0,
+        comments:req.body.rating||[],
+        subName:req.body.subName||"",
+        description:req.body.description||"",
+        authorID:req.body.authorID
+    }
+        req.body.link = datanew;
+      const video = await Video.create(obj);
       return res.status(201).json({ data: video });
    },5000)
 
