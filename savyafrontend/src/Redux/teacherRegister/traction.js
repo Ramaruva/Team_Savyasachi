@@ -25,6 +25,7 @@ export const register =(payload)=>async(dispatch)=>{
         const res= await axios.post('http://localhost:8000/teacher/register',payload)
         dispatch(registerSuccess(res.data))
   } catch (error) {
+      console.log(error)
        dispatch(registerFailure())
   }
 }

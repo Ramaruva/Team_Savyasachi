@@ -4,7 +4,7 @@ import { LOGINFAILURE, LOGINLOADING, LOGINSUCCESS, LOGOUTSUCCESS } from "./tlact
 const initstate ={
     tlLoading:false,
     tlFailure:false,
-    tlSuccess:false,
+    tlSuccess:getData("tlSuccess")||false,
     tlData:getData("tldata")||{},
     tlToken:getData("tlToken")||""
 }
@@ -25,6 +25,7 @@ export const tlReducer =(state=initstate,{type,payload})=>{
         case LOGINSUCCESS :
             storeData("tlData",payload.data)
             storeData("tlToken",payload.token)
+            storeData("tlSuccess",true)
             return{
                 ...state,
                 tlLoading:false,
@@ -35,6 +36,7 @@ export const tlReducer =(state=initstate,{type,payload})=>{
         case LOGOUTSUCCESS :
             deleteData("tlData")
             deleteData("tlToken")
+            deleteData("tlSuccess")
             return {
                 ...state,
                 tlSuccess:false,
