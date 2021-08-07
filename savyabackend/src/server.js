@@ -12,7 +12,7 @@ app.use(cors())
 
 app.use("/user", userRouter);
 app.use("/teacher",teacherController);
- app.use("/video",videoController);
+app.use("/video",videoController);
 
 async function start() {
   await connect();

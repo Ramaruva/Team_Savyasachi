@@ -5,13 +5,15 @@ import { tlReducer } from "./teacherLogin/tlReducer";
 import { trReducer } from "./teacherRegister/trReducer";
 import { loginReducer } from "./LoginRedux/Loginreducer";
 import { registerReducer } from "./Register/registerreducers";
+import { videoReducer } from "./Videos/videoReducer";
 
 export const rootReducer = combineReducers({
    quiz:quizReducer,
    tRegister:trReducer,
    tLogin:tlReducer,
 	login: loginReducer,
-   register:registerReducer
+   register: registerReducer,
+   video:videoReducer
 
 })
 
