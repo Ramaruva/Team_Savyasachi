@@ -96,4 +96,4 @@ function Carouselsection() {
   );
 }
 
-export  {Carouselsection};
+export {Carouselsection};
