@@ -1,4 +1,4 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "./LoginactionType";
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_SUCCESS } from "./LoginactionType";
 import axios from "axios";
 export const loginRequest = (payload) => {
 	return {
@@ -21,6 +21,13 @@ export const loginFailure = (er) => {
 		payload: er,
 	};
 };
+
+export const logoutSuccess = () => {
+	return {
+		type: LOGOUT_SUCCESS,
+		
+	};
+}
 
 export const loginUser = (payload) => (dispatch) => {
 	const requestAction = loginRequest();

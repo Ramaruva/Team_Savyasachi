@@ -8,7 +8,7 @@ import {getData,storeData} from "../../Utlis/localStorage"
 const regdata = {
 	isLoading: false,
 	isError: false,
-	isRegister: false,
+	isRegister:getData("student_reg_auth")||false,
 	istoken:getData("student_reg_token")||"",
 	user:getData("student_reg_data")||{}
 
@@ -24,6 +24,7 @@ export const registerReducer = (state = regdata, { type, payload }) => {
 		case REGISTER_SUCCESS:
 			storeData("student_reg_token",payload.token)
 			storeData("student_reg_data",payload.userData)
+			storeData("student_reg_auth",true)
 			return {
 				...state,
 				isLoading: false,
