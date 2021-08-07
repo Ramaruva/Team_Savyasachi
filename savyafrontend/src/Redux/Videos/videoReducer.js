@@ -22,12 +22,12 @@ export const videoReducer =(state=initstate,{type,payload})=>{
                 tfailure:true
             }
         case VIDEO_SUCCESS:
-            storeData("videodata",payload.data)
+            storeData("videodata",payload)
             return{
                 ...state,
                 tloading:false,
                 tsuccess:true,
-                vdata:payload.data,
+                vdata:payload,
             }    
         default:
             return state

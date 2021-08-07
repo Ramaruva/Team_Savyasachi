@@ -1,0 +1,68 @@
+.container{
+    display:grid;
+    grid-template-columns: auto ;
+    /* border: 1px solid black; */
+}
+.card{
+    height: 500px;
+    /* border: 1px solid black; */
+    margin: 30px;
+    display: flex;
+}
+
+.flex{
+    height: 500px;
+    width: 45%;
+    border: 1px solid rgb(212, 210, 210);
+}
+.flex2{
+    margin-left: 10px;
+    height: 500px;
+    width: 60%;
+    border: 1px solid rgb(212, 210, 210);
+
+}
+.tname{
+    font-size: 30px;
+    margin-left: 5px;
+    color: teal;
+}
+.qua{
+    font-size: 20px;
+    margin-left: 5px;
+}
+.title{
+    font-size: 30px;
+    margin-left: 5px;
+    color: orangered;
+}
+.views{
+    font-size: 20px;
+    margin-left: 5px;
+    color: crimson;
+}
+.commentsbtn{
+    font-size: 20px;
+    margin-left: 255px;
+    color: crimson;
+    background-color: rgb(189, 181, 68);
+    width: 45%;
+    border-radius: 5px;
+    height: 45px;
+    margin-top: 10px;
+}
+
+.comments{
+    margin-top: -5px;
+    /* border: 1px solid black; */
+    width: 85%;
+    height: 95px;
+    margin-left: 5px;
+}
+.cont{
+    /* border: 1px solid black; */
+    width: 95%;
+    height: 100px;
+    margin-top: -60px;
+    display: flex;
+}
