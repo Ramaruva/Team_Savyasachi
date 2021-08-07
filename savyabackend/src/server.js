@@ -4,12 +4,15 @@ const connect = require("./db/db");
 
 const userRouter = require("./controller/user.controller");
 const teacherController=require("./controller/teacher.controller")
+const videoController=require("./controller/video.controller")
 
 app.use(express.json());
 
 
 app.use("/user", userRouter);
-app.use("/teacher",teacherController)
+app.use("/teacher",teacherController);
+ app.use("/video",videoController);
+
 async function start() {
   await connect();
   app.listen(8000, () => {

@@ -1,13 +1,14 @@
-const { google } = require("googleapis")
-const path = require("path")
-const fs = require("fs")
-
+const { google } = require("googleapis");
+const path = require("path");
+const fs = require("fs");
+const { v4: uuidv4 } = require('uuid');
 require("dotenv").config();
-
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
+
+
 
 const oauth2Client = new google.auth.OAuth2(
     CLIENT_ID,
@@ -22,13 +23,13 @@ const drive = google.drive({
     auth: oauth2Client
 })
 
-const filePath = path.join(__dirname,'zoom_0.mp4')
-
+const filePath = path.join("C:/Users/ajmal/OneDrive/Desktop/Drona/Team_Savyasachi/savyabackend/src/utils",'zoom_0.mp4')
+// console.log("C:\Users\ajmal\OneDrive\Desktop\Drona\Team_Savyasachi\savyabackend\src\utils",'zoom_0.mp4')
 async function uploadFile(){
     try{
         const response = await drive.files.create({
             requestBody:{
-                name: 'zoom_0.mp4',
+                name: uuidv4()  + ".mp4",
                 mimeType:'video/mp4'
             },
             media:{
@@ -36,7 +37,6 @@ async function uploadFile(){
                 body: fs.createReadStream(filePath)
             }
         })
-        // console.log(response.data);
         generatePublicUrl(response.data.id)
     }
     catch(error){
@@ -62,7 +62,7 @@ async function deleteFile(){
 // deleteFile();
 
 async function generatePublicUrl(id){
-    console.log(id);
+    // console.log(id);
     try{
         const fileId = id;
         await drive.permissions.create({
@@ -84,3 +84,4 @@ async function generatePublicUrl(id){
 }
 
 // generatePublicUrl()
+// module.exports = uploadFile();
