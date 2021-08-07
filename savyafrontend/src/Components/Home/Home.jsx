@@ -2,9 +2,17 @@ import React from 'react'
 import { Carouselsection } from './Carousel'
 import styles from "./Navbar.module.css";
 import ReactPlayer from 'react-player';
+import { useHistory } from 'react-router-dom';
 
 export const Home = () => {
 
+    const history = useHistory();
+    const handleTeach = () => {
+        history.push("/teach");
+    }
+    const handleLearn = () => {
+        history.push("/learn");
+    }
     return (
         <div>
             {/* <div
@@ -32,7 +40,10 @@ export const Home = () => {
             <div className={styles.edtec}>
                 <div className={styles.minicon}>
                     <h1 className={styles.heading}>The most important gift of all is the gift of education, Distubute your skills to helps students</h1>
-                    <button className={styles.signin}>Teach</button>
+                    <button onClick={handleTeach} className={styles.signin}>Teach</button>
+                    <br/>
+                    <br/>
+                    <button onClick={handleLearn} className={styles.signin}>Learn</button>
                 </div>
                 <div className={styles.minicon2}>
                     <img src="https://www.cheggindia.com/wp-content/uploads/2021/08/Untitled-design-41.png" alt="degree.png" />

@@ -11,7 +11,11 @@ const userSchema = new mongoose.Schema(
     phone_number:{type:Number,required:true}
 
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    versionKey:false
+  }
+  
 );
 
 userSchema.pre("save", function (next) {

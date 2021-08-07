@@ -7,6 +7,8 @@ import { SignUp } from "../Components/SignIn/SignUp";
 import Pages from '../Components/Quiz/Pages/Pages'
 import QuizQuestions from '../Components/Quiz/QuizQuestions/Quiz'
 import Result from '../Components/Quiz/Result/Result'
+import { Teach } from "../Components/Teach/Teach";
+import { Learn } from "../Components/Learn/Learn";
 // import Header from '../Components/Quiz/Header'
 
 
@@ -22,7 +24,13 @@ export const Routes = () => {
                     <Login/>
                 </Route>
                 <Route path="/signup">
-              <SignUp/>
+                <SignUp/>
+                </Route>
+                <Route path="/learn">
+                <Learn/>
+                </Route>
+                <Route path="/teach">
+                <Teach/>
                 </Route>
 				<Route path="/quiz" exact>
                     {/* <Header /> */}
