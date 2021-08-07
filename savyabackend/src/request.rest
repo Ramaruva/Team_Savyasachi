@@ -1,0 +1,24 @@
+
+POST http://localhost:8000/user/signup  HTTP/1.1
+content-type: application/json
+
+{
+    "first_name":"bhargav",
+    "last_name":"reddy",
+    "email":"bhargav@gmail.com",
+    "password":"bhargav1234",
+    "qualification":"b.tech",
+    "phone_number":1234567890
+}
+
+###
+POST http://localhost:8000/user/signin  HTTP/1.1
+content-type: application/json
+
+{   
+    "email":"bhargav@gmail.com",
+    "password":"bhargav1234",  
+}
+
+###
+GET http://localhost:8000/user

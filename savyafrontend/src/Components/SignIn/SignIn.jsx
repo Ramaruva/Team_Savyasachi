@@ -54,9 +54,9 @@ export const Login = () => {
 		<div className={style.toggleTab}>
           <button
             style={{
-              backgroundColor: arjuna ? "white" : "#4DA5E0",
-              borderColor: arjuna ? "#4DA5E0" : "white",
-              color: arjuna ? "#4DA5E0" : "white",
+              backgroundColor: arjuna ? "white" : "rgb(153, 168, 126)",
+              borderColor: arjuna ? "rgb(153, 168, 126)" : "white",
+              color: arjuna ? "rgb(153, 168, 126)" : "white",
             }}
             className={style.tabButton}
             onClick={arjunafn}
@@ -65,9 +65,9 @@ export const Login = () => {
           </button>
           <button
             style={{
-              backgroundColor: drona? "white" : "#4DA5E0",
-              borderColor: drona? "#4DA5E0" : "white",
-              color: drona? "#4DA5E0" : "white",
+              backgroundColor: drona? "white" : "rgb(153, 168, 126)",
+              borderColor: drona? "rgb(153, 168, 126)" : "white",
+              color: drona? "rgb(153, 168, 126)" : "white",
             }}
             className={style.tabButton}
             onClick={dronafn}
