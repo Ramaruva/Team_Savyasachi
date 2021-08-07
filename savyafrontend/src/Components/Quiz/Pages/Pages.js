@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useContext} from 'react'
 import "./Pages.css"
 import {TextField,MenuItem, Button} from "@material-ui/core"
 import Categories from "../Data/Categories"
@@ -6,14 +6,15 @@ import {useHistory} from "react-router"
 import {ErrorMessage} from "../Error/ErrorMessage"
 import {fetchQuestions} from "../../../Redux/Quiz/action"
 import {useDispatch} from "react-redux"
+import { AuthContext } from '../../ContextProvider/AuthContextProvider'
 
 
 function Pages(){
-    const [name,setName] = useState("")
     const [category,setCategory] = useState("")
     const [error,setError] = useState(false)
     const [difficulty,setDifficulty] = useState("")
     const history = useHistory()
+    const {name,setName} = useContext(AuthContext);
 
     const dispatch = useDispatch()
 
@@ -32,8 +33,10 @@ function Pages(){
     return (
         <div className="content">
             <div className="settings">
-                <span style={{fontSize:30}}>Quiz Settings</span>
             <div className="settings_select">
+            <span style={{fontSize:30,marginBottom:10}}>Quiz Settings</span>
+
+            {/* <h1>Quiz Settings</h1> */}
                 {error && <ErrorMessage>Please Fill all the fields</ErrorMessage>}
                 <TextField
                 style={{marginBottom:25}}
