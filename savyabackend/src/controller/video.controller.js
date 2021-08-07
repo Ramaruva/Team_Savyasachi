@@ -32,7 +32,7 @@ const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 
 
 let datanew = "";
-router.post("/",upload.single("video"), async (req, res) => {
+router.post("/",uploads.single("video"), async (req, res) => {
 datanew = await  uploadFile( req.file.path);
     
    setTimeout(async ()=>{

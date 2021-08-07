@@ -7,17 +7,27 @@ import { FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutSuccess } from "../../Redux/LoginRedux/Loginaction";
+import { tlogout } from "../../Redux/teacherLogin/tlaction";
 
 function Navbar() {
 
   const { isAuth } = useSelector(state => state.login);
-  // const { tlSuccess } = useSelector(state => state.tLogin);
+  const { tlSuccess } = useSelector(state => state.tLogin);
   const dispatch = useDispatch();
   const handleLogout = () => {
-    
-    dispatch(logoutSuccess());
+    if (isAuth) {
+      
+      dispatch(logoutSuccess());
+      return;
+
+    }
+    if (tlSuccess) {
+      dispatch(tlogout());
+      return;
+    }
   }
 
+ 
 
   return (
     <div className={styles.containers}>
@@ -29,14 +39,16 @@ function Navbar() {
       </div>
       <div className={styles.navinfo}>
       <Link to="/learn">Learn</Link>
-        <Link to="/teach">Teach</Link>
-        {isAuth? <Link to="/signin">
+      {isAuth?<Link to="/quiz/pages">Quiz</Link>:null}
+        {tlSuccess ? <Link to="/teach">Teach</Link> : null}
+      
+        {isAuth||tlSuccess? <Link to="/signin">
           <button onClick={handleLogout} className={styles.signin}>Sign-Out</button>
       </Link>:<Link to="/signin">
           <button className={styles.signin}>Sign-In</button>
       </Link>}
       
-      { isAuth?null:<Link to="/signup">
+      { isAuth||tlSuccess?null:<Link to="/signup">
           <button className={styles.signup}>Sign-Up</button>
       </Link>}
         

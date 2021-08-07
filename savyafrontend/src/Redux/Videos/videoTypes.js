@@ -1,0 +1,4 @@
+export const VIDEO_LOADING = "VIDEO_LOADING";
+export const VIDEO_SUCCESS="VIDEO_SUCCESS";
+export const VIDEO_FAILURE = "VIDEO_FAILURE";
+
