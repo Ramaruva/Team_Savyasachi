@@ -9,6 +9,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useDispatch,useSelector } from "react-redux";
+import { Studentsignup } from "../../Redux/Register/registeraction";
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -49,13 +52,16 @@ export  function ArjunaSignUp(init) {
   const [data, setData] = useState(init);
   const { fname, lname, phone,email, psd, qualification } = data;
 
-
+  const { isRegister } = useSelector((state) => state.register);
+  console.log("isRegister",isRegister)
 
   const handleChange = (e) => {
     let { name, value } = e.target;
     setData({...data,[name]:value});
   };
 
+  const dispatch = useDispatch();
+  
   const handleSignup = (e) => {
     e.preventDefault();
     
@@ -68,26 +74,13 @@ export  function ArjunaSignUp(init) {
       qualification: qualification,
     }
 
-    console.log(payload)
+
+    dispatch(Studentsignup(payload))
 
   }
 
-  // const value = [
-  //   {
-  //     value: 'select',
-  //     label: 'Select',
-  //   },
-  //   {
-  //     value: 'student',
-  //     label: 'Student',
-  //   },
-  //   {
-  //     value: 'teacher',
-  //     label: 'Teacher',
-  //   },
-
-  // ];
-  return (
+  
+  return !isRegister?(
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -187,29 +180,6 @@ export  function ArjunaSignUp(init) {
               />
             </Grid>
            
-            <Grid item xs={12}>
-              {/* <TextField
-                fullWidth
-              id="outlined-select-currency-native"
-              select
-              label="Native select"
-                value={category}
-                name="category"
-              onChange={handleChange}
-              SelectProps={{
-                native: true,
-              }}
-              helperText="Please select your currency"
-              variant="outlined"
-        >
-          {value.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextField> */}
-            </Grid>
-           
           </Grid>
           <Button
             type="submit"
@@ -231,5 +201,5 @@ export  function ArjunaSignUp(init) {
       </div>
      
     </Container>
-  );
+  ):<Redirect to="/signin"/>
 }
