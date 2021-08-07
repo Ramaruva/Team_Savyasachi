@@ -29,22 +29,15 @@ function Navbar() {
       <Link to="/learning">Learning</Link>
         <Link to="/help">Help</Link>
         {isAuth? <Link to="/signin">
-          <button onClick={handleLogout} className={styles.signin}>Sign Out</button>
+          <button onClick={handleLogout} className={styles.signin}>Sign-Out</button>
       </Link>:<Link to="/signin">
-          <button className={styles.signin}>Sign In</button>
+          <button className={styles.signin}>Sign-In</button>
       </Link>}
       
       { isAuth?null:<Link to="/signup">
-          <button className={styles.signup}>Sign Up</button>
+          <button className={styles.signup}>Sign-Up</button>
       </Link>}
-        {/* <Link href="/profile">
-              <button className={styles.signin}>Profile</button>
-            </Link>
-            <Link href="/">
-              <button className={styles.signup}>
-                Logout
-              </button>
-            </Link> */}
+        
       </div>
     </div>
   );
