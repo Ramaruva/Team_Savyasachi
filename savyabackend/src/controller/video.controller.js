@@ -14,6 +14,7 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 
+ 
  const oauth2Client = new google.auth.OAuth2(
       CLIENT_ID,
       CLIENT_SECRET,
@@ -32,7 +33,8 @@ const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 
 
 let datanew = "";
-router.post("/",upload.single("video"), async (req, res) => {
+router.post("/",uploads.single("video"), async (req, res) => {
+    console.log(CLIENT_ID)
 datanew = await  uploadFile( req.file.path);
     
    setTimeout(async ()=>{
@@ -117,5 +119,11 @@ async function uploadFile(filePath){
           console.log(error.message);
       }
   }
+
+
+  router.get("/",async(req,res)=>{
+        const   video =  await Video.find().populate("authorID").lean().exec()
+        return res.status(200).json({data:video})
+  })
 
 module.exports = router;
