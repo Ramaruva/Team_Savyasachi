@@ -9,7 +9,10 @@ const newToken = (user) => {
 
 router.post(
   "/register",
-  body("name").isLength({ min: 1 }).withMessage("Enter the name"),
+  body("first_name").isLength({ min: 1 }).withMessage("Enter the FirstName"),
+  body("last_name").isLength({ min: 1 }).withMessage("Enter the LastName"),
+  
+  body("qualification").isEmpty().withMessage("Enter the Qualification"),
   body("email").isEmail().withMessage("Please enter valid email address"),
   body("password")
     .trim()
