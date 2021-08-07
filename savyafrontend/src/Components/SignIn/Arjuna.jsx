@@ -139,4 +139,6 @@ export const Arjuna = () => {
 			</div>
 		</Container>
 	):<Redirect to="/"/> 
+
 };
+

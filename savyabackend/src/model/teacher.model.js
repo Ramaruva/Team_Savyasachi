@@ -2,11 +2,15 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 const teacherSchema = new Schema(
   {
-    name: { type: String, required: true },
+    first_name: { type: String, required: true },
+    last_name: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
     role: { type: String, required: true },
     quiz: { type: Boolean },
+    qualification: { type: String, required: true },
+    phone_number:{type:Number}
+    
   },
   { timestamps: true }
 );
