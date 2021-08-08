@@ -8,7 +8,7 @@ import {useSelector} from "react-redux"
 
 export const Home = () => {
 
-    const {login} = useSelector((state)=>state.login)
+    const {isAuth} = useSelector((state)=>state.login)
 
     const history = useHistory();
     const handleTeach = () => {
@@ -18,7 +18,7 @@ export const Home = () => {
         history.push("/learn");
     }
     const handleQuiz = () =>{
-        if(!login){
+        if(!isAuth){
             history.push("/signin")
         }
         else{
