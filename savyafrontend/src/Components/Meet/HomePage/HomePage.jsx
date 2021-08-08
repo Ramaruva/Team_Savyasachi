@@ -8,7 +8,7 @@ const HomePage = () => {
   
   const startCall = ()=>{
     const uid = shortid.generate();
-    history.push(`/${uid}#init`);
+    history.push(`/meet/${uid}#init`);
   }
   return (
     <div className="homepage">
