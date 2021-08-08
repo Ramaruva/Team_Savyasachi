@@ -10,6 +10,7 @@ app.use(express.json());
 
 app.use("/user", userRouter);
 app.use("/teacher",teacherController)
+
 async function start() {
   await connect();
   app.listen(8000, () => {

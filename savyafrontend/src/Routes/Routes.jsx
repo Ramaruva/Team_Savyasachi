@@ -7,6 +7,7 @@ import { SignUp } from "../Components/SignIn/SignUp";
 import Pages from '../Components/Quiz/Pages/Pages'
 import QuizQuestions from '../Components/Quiz/QuizQuestions/Quiz'
 import Result from '../Components/Quiz/Result/Result'
+import VideoApp from "../Components/VideoChat/VideoApp"
 // import Header from '../Components/Quiz/Header'
 
 
@@ -37,6 +38,10 @@ export const Routes = () => {
                 <Route path="/quiz/result">
                     <Result />
                 </Route>
+                <Route path="/videoapp">
+                    <VideoApp />
+                </Route>
+               
 				<Route>
 					<h2>Page Not found</h2>
 				</Route>
