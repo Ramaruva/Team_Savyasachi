@@ -117,4 +117,9 @@ async function uploadFile(filePath){
         return res.status(200).json({data:video})
   })
 
+
+router.patch("/:id",async(req,res)=>{
+    const item = await Video.findByIdAndUpdate(req.params.id,req.body)
+    return res.status(200).json({data:item})
+})
 module.exports = router;

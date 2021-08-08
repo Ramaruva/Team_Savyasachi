@@ -1,15 +1,64 @@
-import React from 'react'
+import React, { useEffect, useState}from 'react'
 import styles from "./Video.module.css";
 import ReactStars from 'react-stars'
 import TextField from "@material-ui/core/TextField";
-
+import { useDispatch } from "react-redux";
+import { updateVideo } from '../../Redux/Videos/videoaction';
 export const Vdata = ({ item }) => {
 
-  console.log(item.link)
-const ratingChanged = (newRating) => {
-  console.log(newRating)
-}
+    let link=item.link.split("/")
+//   console.log(link)
 
+    const dispatch = useDispatch();
+    
+    const [vdataid, setVdataId] = React.useState("");
+    const [rating, setRating] = useState(0);
+    const [rating1, setRating1] = useState(item.rating);
+
+    
+    const videodata = () => {
+
+        let sum = 0;
+        for (let i = 0; i < item.rating.length; i++){
+            sum += item.rating[i];
+            
+        }
+
+        let avg = sum / item.rating.length;
+        setRating(avg);
+
+       for(let i=0;i<link.length;i++){
+           if(link[i]=="d"){
+               setVdataId(link[i + 1]);
+               return;
+           }
+        }
+    
+    }
+
+
+const ratingChanged = (newRating) => {
+    console.log(newRating)
+    // updateVideo(newRating,id)
+
+    rating1.push(newRating);
+
+    const payload = {
+        rating:rating1,
+    }
+
+    console.log(item._id);
+    dispatch(updateVideo(payload, item._id));
+    
+    
+}
+    
+    console.log(vdataid);
+
+    
+    useEffect(() => {
+        videodata()
+    },[])
 
     
     return (
@@ -19,7 +68,7 @@ const ratingChanged = (newRating) => {
                            
                                 <video controls="controls" style={{ width: "100%", height: "100%" ,marginTop:"-95px"}}>
                                   
-                                <source src="https://drive.google.com/uc?export=download&id=1JcKNDCw8sD1miiqmlBsuB0Pe7YPwl5uu" type='video/webm'/>
+                                <source src={`https://drive.google.com/uc?export=download&id=${vdataid}`} type='video/webm'/>
                                 </video>
                           
                             </div>
@@ -33,7 +82,7 @@ const ratingChanged = (newRating) => {
                     <p className={styles.views}>Views: {item.views}</p>
                      <ReactStars
                             count={5}
-                            onChange={()=>ratingChanged(item.rating)}
+                            onChange={ratingChanged}
                             size={25}
                             color2={'#ffd700'} />
                               <br/><br /><br />
