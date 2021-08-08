@@ -5,8 +5,7 @@ import TextField from "@material-ui/core/TextField";
 
 export const Vdata = ({ item }) => {
 
-  
- 
+  console.log(item.link)
 const ratingChanged = (newRating) => {
   console.log(newRating)
 }
