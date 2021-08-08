@@ -43,10 +43,11 @@ export const PostVideo =(payload)=>async(dispatch)=>{
 }
 
 
-export const updateVideo =(payload)=>async(dispatch)=>{
+export const updateVideo =(payload,id)=>async(dispatch)=>{
+    
     try {
         dispatch(videoLoading())
-        const res= await axios.patch('http://localhost:8000/video',payload)
+        const res= await axios.patch(`http://localhost:8000/video/${id}`,payload)
         getVideo();
     } catch (error) {
         console.log(error)

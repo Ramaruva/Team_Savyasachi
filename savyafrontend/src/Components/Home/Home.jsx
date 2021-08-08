@@ -4,8 +4,11 @@ import styles from "./Navbar.module.css";
 import ReactPlayer from 'react-player';
 import { useHistory } from 'react-router-dom';
 import {Button} from '@material-ui/core'
+import {useSelector} from "react-redux"
 
 export const Home = () => {
+
+    const {isAuth} = useSelector((state)=>state.login)
 
     const history = useHistory();
     const handleTeach = () => {
@@ -13,6 +16,14 @@ export const Home = () => {
     }
     const handleLearn = () => {
         history.push("/learn");
+    }
+    const handleQuiz = () =>{
+        if(!isAuth){
+            history.push("/signin")
+        }
+        else{
+            history.push("/quiz/pages")
+        }
     }
     return (
         <div>
@@ -63,7 +74,7 @@ export const Home = () => {
                         color="primary"
                         variant="contained"
                         size="large"
-                        href="/quiz/pages"
+                        onClick={handleQuiz}
                         >
                            Participate in Quiz</Button>
                     </div>
