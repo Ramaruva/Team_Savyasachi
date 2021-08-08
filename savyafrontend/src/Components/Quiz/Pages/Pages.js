@@ -2,12 +2,13 @@ import React, {useState,useContext} from 'react'
 import "./Pages.css"
 import {TextField,MenuItem, Button} from "@material-ui/core"
 import Categories from "../Data/Categories"
-import {useHistory} from "react-router"
+import {useHistory} from "react-router-dom"
+import {useSelector} from "react-redux"
 import {ErrorMessage} from "../Error/ErrorMessage"
 import {fetchQuestions} from "../../../Redux/Quiz/action"
 import {useDispatch} from "react-redux"
 import { AuthContext } from '../../ContextProvider/AuthContextProvider'
-
+import {Redirect} from "react-router-dom"
 
 function Pages(){
     const [category,setCategory] = useState("")
@@ -17,6 +18,7 @@ function Pages(){
     const {name,setName} = useContext(AuthContext);
 
     const dispatch = useDispatch()
+    const {login} = useSelector((state)=>state.login)
 
     const handleSubmit = () =>{
         if(!category || !difficulty || !name){
@@ -30,7 +32,7 @@ function Pages(){
             history.push("/quiz/questions")
         }
     }
-    return (
+    return login ?(
         <div className="content">
             <div className="settings">
             <div className="settings_select">
@@ -85,6 +87,8 @@ function Pages(){
             </div>
             <img src="/quiz_setting.svg" className="banner" alt="quiz img" />
         </div>
+    ):(
+        <Redirect to="/signin" />
     )
 }
 
