@@ -1,237 +1,86 @@
-import React, { useState } from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import React, { useState } from "react";
+import Button from "@material-ui/core/Button";
 
-
-
+import { makeStyles } from "@material-ui/core/styles";
+import { Arjuna } from "./Arjuna";
+import { Drona } from "./Drona";
+// import { useDispatch, useSelector } from "react-redux";
+import styles from "./Styles.css";
+import style from "../Home/Navbar.module.css"
+import { ArjunaSignUp } from "./ArjunaReg";
+import { DronaSignUp } from "./DronaReg";
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-    color:"black",
-    backgroundColor:"rgb(153, 168, 126)"
-  },
+	paper: {
+		marginTop: theme.spacing(8),
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+	},
+	avatar: {
+		margin: theme.spacing(1),
+		backgroundColor: theme.palette.secondary.main,
+	},
+	form: {
+		width: "100%", // Fix IE 11 issue.
+		marginTop: theme.spacing(1),
+	},
+	submit: {
+        margin: theme.spacing(3, 0, 2),
+        color:"black",
+        backgroundColor: "rgb(153, 168, 126)"
+       
+	},
+  
 }));
 
-const init = {
-  fname: "",
-  lname: "",
-  phone: "",
-  email: "",
-  psd: "",
-  qualification: "",
-  category:""
-}
 
-export  function SignUp(init) {
-  const classes = useStyles();
-  const [data, setData] = useState(init);
-  const { fname, lname, phone,email, psd, qualification, category } = data;
+export const SignUp = () => {
+	
+	const classes = useStyles();
 
+	const [arjuna, setArujuna] = useState(true);
+	const [drona, setDrona] = useState(false);
 
-
-  const handleChange = (e) => {
-    let { name, value } = e.target;
-    setData({...data,[name]:value});
-  };
-
-  const handleSignup = (e) => {
-    e.preventDefault();
-    
-    const payload = {
-      firstname: fname,
-      lastname: lname,
-      phone_number: phone,
-      email: email,
-      password: psd,
-      qualification: qualification,
-      category:category
-    }
-
-    console.log(payload)
-
-  }
-
-  const value = [
-    {
-      value: 'select',
-      label: 'Select',
-    },
-    {
-      value: 'student',
-      label: 'Student',
-    },
-    {
-      value: 'teacher',
-      label: 'Teacher',
-    },
-
-  ];
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="fname"
-                variant="outlined"
-                value={fname}
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lname"
-                onChange={handleChange}
-
-                value={lname}
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                onChange={handleChange}
-
-                id="email"
-                label="Email Address"
-                name="email"
-                value={email}
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="psd"
-                onChange={handleChange}
-
-                value={psd}
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                onChange={handleChange}
-
-                value={phone}
-                name="phone"
-                label="Phone-Number"
-                type="number"
-                id="phone-number"
-                autoComplete="current-phone-number"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                onChange={handleChange}
-
-                fullWidth
-                value={qualification}
-                name="qualification"
-                label="Qualification"
-                type="text"
-                id="qualification"
-                autoComplete="current-qualification"
-              />
-            </Grid>
-           
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-              id="outlined-select-currency-native"
-              select
-              label="Native select"
-                value={category}
-                name="category"
-              onChange={handleChange}
-              SelectProps={{
-                native: true,
-              }}
-              helperText="Please select your currency"
-              variant="outlined"
-        >
-          {value.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextField>
-            </Grid>
-           
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className={classes.submit}
-            onClick={handleSignup}
+	const arjunafn = () => {
+		setArujuna(true);
+		setDrona(false);
+	}
+	const dronafn = () => {
+		setDrona(true);
+		setArujuna(false);
+	}
+	
+	return (
+		<div>
+		<div className={style.toggleTab}>
+          <button
+            style={{
+              backgroundColor: arjuna ? "white" : "rgb(153, 168, 126)",
+              borderColor: arjuna ? "rgb(153, 168, 126)" : "white",
+              color: arjuna ? "rgb(153, 168, 126)" : "white",
+            }}
+            className={style.tabButton}
+            onClick={arjunafn}
           >
-            Sign Up
-          </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-     
-    </Container>
-  );
-}
+            Arjuna
+          </button>
+          <button
+            style={{
+              backgroundColor: drona? "white" : "rgb(153, 168, 126)",
+              borderColor: drona? "rgb(153, 168, 126)" : "white",
+              color: drona? "rgb(153, 168, 126)" : "white",
+            }}
+            className={style.tabButton}
+            onClick={dronafn}
+          >
+           Drona
+          </button>
+        </div>
+			{arjuna &&<ArjunaSignUp/>}
+			{drona && <DronaSignUp/>}
+			
+		</div>
+	)
+		
+};

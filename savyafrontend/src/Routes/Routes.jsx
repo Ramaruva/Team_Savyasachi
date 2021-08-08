@@ -10,6 +10,9 @@ import Result from '../Components/Quiz/Result/Result'
 import VideoApp from "../Components/VideoChat/VideoApp"
 // import Header from '../Components/Quiz/Header'
 
+import { Teach } from "../Components/Teach/Teach";
+import { Learn } from "../Components/Learn/Learn";
+import { Video } from "../Components/Video/Video";
 
 export const Routes = () => {
 	return (
@@ -23,13 +26,16 @@ export const Routes = () => {
                     <Login/>
                 </Route>
                 <Route path="/signup">
-              <SignUp/>
+                <SignUp/>
                 </Route>
-				<Route path="/quiz" exact>
-                    {/* <Header /> */}
+                <Route path="/learn">
+                <Video/>
                 </Route>
-                <Route path="/quiz/pages">
-                    {/* <Header /> */}
+                <Route path="/teach">
+                <Teach/>
+                </Route>
+              
+                <Route path="/quiz/pages">                   
                     <Pages />
                 </Route>
                 <Route path="/quiz/questions">

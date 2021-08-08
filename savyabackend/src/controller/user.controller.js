@@ -15,11 +15,11 @@ router.post(
   body("email").isEmail().withMessage("Please enter a valid Email Address"),
   body("password")
     .trim()
-    .isLength({ min: 8 })
-    .withMessage("Password length should be 8 or more"),
-    body("type").trim().not().isEmpty().withMessage("Type cannot be Empty"),
+    .isLength({ min: 6 })
+    .withMessage("Password length should be 6 or more"),
+
     body("qualification").trim().not().isEmpty().withMessage("Qualification Cannot be Empty"),
-    body("phone")
+    body("phone_number")
     .trim()
     .isLength({ min: 10,max:10 })
     .withMessage("Phone Number must be 10 digits"),

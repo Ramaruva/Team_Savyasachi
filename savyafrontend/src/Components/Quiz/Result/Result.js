@@ -4,12 +4,13 @@ import { AuthContext } from '../../ContextProvider/AuthContextProvider'
 import "./Result.css"
 
 function Result(){
-    const {score,setScore} = useContext(AuthContext);
+    const {score} = useContext(AuthContext);
 
     return (
         <div className="result">
-            <span className="title">
-                Final Score:{score}</span>
+            <h1 className="title">
+                Final Score:{score}
+            </h1>
             <Button
                variant="contained"
                color="secondary"

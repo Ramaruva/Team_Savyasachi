@@ -1,18 +1,12 @@
 import React, { useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
+
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import { Arjuna } from "./Arjuna";
+import { Drona } from "./Drona";
 // import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import styles from "./Styles.css";
+import style from "../Home/Navbar.module.css"
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -37,113 +31,54 @@ const useStyles = makeStyles((theme) => ({
 	},
   
 }));
-// eslint-disable-next-line
-const init = {
-	email: "",
-	password: "",
-	// student: "",
-	// teacher: "",
-};
 
-export const Login = (init) => {
-	const [loginData, setloginData] = useState(init);
-	const { email, password} = loginData;
+
+export const Login = () => {
+	
 	const classes = useStyles();
 
+	const [arjuna, setArujuna] = useState(true);
+	const [drona, setDrona] = useState(false);
 
-	const handleLogin = (e) => {
-		let { name, value, type, checked } = e.target;
-
-		value = type === "checkbox" ? checked : value;
-		setloginData({ ...loginData, [name]: value });
-	};
-
+	const arjunafn = () => {
+		setArujuna(true);
+		setDrona(false);
+	}
+	const dronafn = () => {
+		setDrona(true);
+		setArujuna(false);
+	}
 	
-	// const dispatch = useDispatch();
-	const Login = (e) => {
-		e.preventDefault();
-		const payload = {
-			email,
-			password,
+	return (
+		<div>
+		<div className={style.toggleTab}>
+          <button
+            style={{
+              backgroundColor: arjuna ? "white" : "rgb(153, 168, 126)",
+              borderColor: arjuna ? "rgb(153, 168, 126)" : "white",
+              color: arjuna ? "rgb(153, 168, 126)" : "white",
+            }}
+            className={style.tabButton}
+            onClick={arjunafn}
+          >
+            Arjuna
+          </button>
+          <button
+            style={{
+              backgroundColor: drona? "white" : "rgb(153, 168, 126)",
+              borderColor: drona? "rgb(153, 168, 126)" : "white",
+              color: drona? "rgb(153, 168, 126)" : "white",
+            }}
+            className={style.tabButton}
+            onClick={dronafn}
+          >
+           Drona
+          </button>
+        </div>
+			{arjuna &&<Arjuna/>}
+			{drona && <Drona/>}
 			
-		};
-		console.log(payload);
-
-	};
-	const islogin = false;
-
-	return !islogin ? (
-		<Container component="main" maxWidth="xs">
-			<CssBaseline />
-			<div className={classes.paper}>
-				<Avatar className={classes.avatar}>
-					<LockOutlinedIcon />
-				</Avatar>
-				<Typography component="h1" variant="h5">
-					Sign in
-				</Typography>
-				<form className={classes.form} noValidate>
-					<TextField
-						variant="outlined"
-						margin="normal"
-						required
-						fullWidth
-						id="email"
-						label="Email Address"
-						name="email"
-						autoComplete="email"
-						autoFocus
-						value={email}
-						onChange={handleLogin}
-					/>
-					<TextField
-						variant="outlined"
-						margin="normal"
-						required
-						fullWidth
-						name="password"
-						label="Password"
-						type="password"
-						id="password"
-						value={password}
-						onChange={handleLogin}
-						autoComplete="current-password"
-					/>
-					{/* <FormControlLabel
-						control={<Checkbox onChange={handleLogin} name="student" checked={student} color="primary" />}
-						label="Student"
-					/>
-					<FormControlLabel
-						control={<Checkbox onChange={handleLogin} name="teacher" checked={teacher} color="primary" />}
-						label="Instructor"
-					/> */}
-					
-					<Button
-						type="submit"
-						fullWidth
-                        variant="contained"
-						
-						onClick={Login}
-						className={classes.submit}
-					>
-						Sign In
-					</Button>
-					<Grid container>
-						<Grid item xs>
-							<Link href="#" variant="body2">
-								Forgot password?
-							</Link>
-						</Grid>
-						<Grid item>
-							<Link href="#" variant="body2">
-								{"Don't have an account? Sign Up"}
-							</Link>
-						</Grid>
-					</Grid>
-				</form>
-			</div>
-		</Container>
-	) : (
-		<Redirect to="/" />
-	);
+		</div>
+	)
+		
 };
