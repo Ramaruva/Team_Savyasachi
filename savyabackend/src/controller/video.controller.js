@@ -37,6 +37,8 @@ router.post("/",uploads.single("video"), async (req, res) => {
     console.log(CLIENT_ID)
 datanew = await  uploadFile( req.file.path);
     
+
+
    setTimeout(async ()=>{
     let obj = {
         title:req.body.title,
@@ -73,10 +75,7 @@ async function uploadFile(filePath){
           console.log(error);
       }
   }
-  
-  
-//   uploadFile();
-  
+
   async function deleteFile(){
       try{
           const response = await drive.files.delete({
@@ -88,15 +87,7 @@ async function uploadFile(filePath){
           console.log(error.message);
       }
   }
-  
-  // deleteFile();
 
-//    const someFunc = function(){
-//          return new Promise((resolve,reject)=>{
-
-//          })
-//    }
-  
   async function generatePublicUrl(id){
       console.log(id);
       try{
@@ -126,4 +117,9 @@ async function uploadFile(filePath){
         return res.status(200).json({data:video})
   })
 
+
+router.patch("/:id",async(req,res)=>{
+    const item = await Video.findByIdAndUpdate(req.params.id,req.body)
+    return res.status(200).json({data:item})
+})
 module.exports = router;
