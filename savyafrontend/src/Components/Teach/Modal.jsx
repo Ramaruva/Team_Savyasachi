@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useDispatch,useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
+import { PostVideo } from '../../Redux/Videos/videoaction';
 
 
 
@@ -39,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 
 const init = {
     title: "",
-    video: "",
     subName: "",
     description: "",
 
@@ -48,32 +48,35 @@ const init = {
 export  function VideoModal(init) {
   const classes = useStyles();
   const [data, setData] = useState(init);
-  const { title, video, subName, description } = data;
-
+  const { title, subName, description } = data;
+  const videoup = useRef()
   const { isRegister } = useSelector((state) => state.register);
+  const tlData = useSelector(state=>state.tLogin.tlData)
   console.log("isRegister",isRegister)
-
+  const [authorID,setauthorID]=useState(tlData. _id)
   const handleChange = (e) => {
     let { name, value } = e.target;
     setData({...data,[name]:value});
   };
 
   const dispatch = useDispatch();
-  
+    
   const handleSignup = (e) => {
     e.preventDefault();
-    
+    console.log(videoup.current.files[0]);
     const payload = {
         title,
-        video,
+        video:videoup.current.files[0],
         subName,
         description,
-        authorID:""
+        authorID
     }
+    dispatch(PostVideo(payload))
+   console.log(payload)
+
   }
 
-    const { tlData } = useSelector((state) => state.tLogin);
-    console.log(tlData);
+   
   
   return (
     <Container component="main" maxWidth="xs">
@@ -102,16 +105,22 @@ export  function VideoModal(init) {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
+              {/* <TextField
                 variant="outlined"
                 required
                 fullWidth
                 type="file"
+<<<<<<< HEAD
                 name="video"
                 onChange={handleChange}
                 value={video}
+=======
+                 ref={videoup}
+                name="video"
+>>>>>>> 60a6569ab93a7bde63c81e61c05086714aaa8e66
                 autoComplete="video"
-              />
+              /> */}
+              <input type="file" accept="video/mp4,video/x-m4v,video/*"  ref={videoup} />
             </Grid>
             <Grid item xs={12}>
               <TextField

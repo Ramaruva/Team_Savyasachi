@@ -50,6 +50,8 @@ const useStyles = makeStyles((theme) => ({
 export const Teach = () => {
     const classes = useStyles();
     const { trdata } = useSelector(state => state.tRegister);
+    const tlData = useSelector(state=>state.tLogin.tlData)
+    console.log(tlData)
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => {
@@ -63,10 +65,10 @@ export const Teach = () => {
         <div>
             <div className={styles.container}>
                 <div className={styles.card}>
-                    <h1>{ trdata.first_name + " "+trdata.last_name}</h1>
-                        <p className={styles.title}>{trdata.email}</p>
+                    <h1>{ tlData.first_name + " "+tlData.last_name}</h1>
+                        <p className={styles.title}>{tlData.email}</p>
                         <p className={styles.title}>{trdata.phone_number}</p>
-                        <p className={styles.title}>{ trdata.qualification}</p>
+                        <p className={styles.title}>{ tlData.qualification}</p>
                 <p className={styles.title}>Harvard University</p>
                 <div style={{margin: "24px"}}>
                     <a href="#"><i className="fa fa-dribbble"></i></a> 

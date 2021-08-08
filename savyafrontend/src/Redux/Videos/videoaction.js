@@ -31,13 +31,13 @@ export const getVideo =()=>async(dispatch)=>{
     }
 }
   
-// export const PostVideo =(payload)=>async(dispatch)=>{
-//   try {
-//         dispatch(videoLoading())
-//         const res= await axios.post('http://localhost:8000/video',payload)
-//       getVideo();
-//   } catch (error) {
-//       console.log(error)
-//        dispatch(videoFailure())
-//   }
-// }
+export const PostVideo =(payload)=>async(dispatch)=>{
+  try {
+        dispatch(videoLoading())
+        const res= await axios.post('http://localhost:8000/video',payload)
+      getVideo();
+  } catch (error) {
+      console.log(error)
+       dispatch(videoFailure())
+  }
+}
