@@ -23,7 +23,7 @@ export const tlReducer =(state=initstate,{type,payload})=>{
                 tlLoading:false
             }
         case LOGINSUCCESS :
-            storeData("tlData",payload.data)
+            storeData("tldata",payload.data)
             storeData("tlToken",payload.token)
             storeData("tlSuccess",true)
             return{
