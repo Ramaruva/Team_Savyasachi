@@ -18,7 +18,7 @@ function Pages(){
     const {name,setName} = useContext(AuthContext);
 
     const dispatch = useDispatch()
-    const {login} = useSelector((state)=>state.login)
+    const {isAuth} = useSelector((state)=>state.login)
 
     const handleSubmit = () =>{
         if(!category || !difficulty || !name){
@@ -32,7 +32,7 @@ function Pages(){
             history.push("/quiz/questions")
         }
     }
-    return login ?(
+    return isAuth ?(
         <div className="content">
             <div className="settings">
             <div className="settings_select">
