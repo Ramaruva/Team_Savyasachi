@@ -13,6 +13,7 @@ import VideoApp from "../Components/VideoChat/VideoApp"
 import { Teach } from "../Components/Teach/Teach";
 import { Learn } from "../Components/Learn/Learn";
 import { Video } from "../Components/Video/Video";
+import VideoChatApp from "../Components/VideoChat/VideoChatApp";
 
 export const Routes = () => {
 	return (
@@ -43,6 +44,9 @@ export const Routes = () => {
                 </Route>
                 <Route path="/quiz/result">
                     <Result />
+                </Route>
+                <Route path="/videochat">
+                    <VideoChatApp/>
                 </Route>
                 <Route path="/videoapp">
                     <VideoApp />
