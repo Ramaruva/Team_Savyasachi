@@ -11,7 +11,6 @@ function Videoplayer({ video }) {
 		<div className={styles.videoplayer}>
 			<ReactPlayer
 				controls
-				
 				width="100%"
 				height="100%"
 				url={video}
