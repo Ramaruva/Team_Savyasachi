@@ -70,9 +70,6 @@ export  function VideoModal(init) {
         description,
         authorID:""
     }
-
-
-
   }
 
     const { tlData } = useSelector((state) => state.tLogin);
@@ -110,11 +107,8 @@ export  function VideoModal(init) {
                 required
                 fullWidth
                 type="file"
-                
-             
                 name="video"
                 onChange={handleChange}
-
                 value={video}
                 autoComplete="video"
               />
@@ -125,7 +119,6 @@ export  function VideoModal(init) {
                 required
                 fullWidth
                 onChange={handleChange}
-
                 id="subName"
                 label="SubName"
                 name="subName"
@@ -140,17 +133,13 @@ export  function VideoModal(init) {
                 fullWidth
                 name="description"
                 onChange={handleChange}
-
                 value={description}
                 label="Description"
                 type="text"
                 id="description"
                 autoComplete="current-description"
               />
-            </Grid>
-            
-            
-           
+            </Grid> 
           </Grid>
           <Button
             type="submit"
@@ -169,8 +158,7 @@ export  function VideoModal(init) {
             </Grid>
           </Grid>
         </form>
-      </div>
-     
+      </div>  
     </Container>
   )
 }

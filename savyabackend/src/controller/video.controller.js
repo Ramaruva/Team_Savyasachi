@@ -73,10 +73,7 @@ async function uploadFile(filePath){
           console.log(error);
       }
   }
-  
-  
-//   uploadFile();
-  
+
   async function deleteFile(){
       try{
           const response = await drive.files.delete({
@@ -88,15 +85,7 @@ async function uploadFile(filePath){
           console.log(error.message);
       }
   }
-  
-  // deleteFile();
 
-//    const someFunc = function(){
-//          return new Promise((resolve,reject)=>{
-
-//          })
-//    }
-  
   async function generatePublicUrl(id){
       console.log(id);
       try{
