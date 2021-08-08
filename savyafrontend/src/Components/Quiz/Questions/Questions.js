@@ -48,7 +48,7 @@ function Questions({
         }
    }
    const handleQuit = () => {
-
+    
    }
     return (
         <div className="question">

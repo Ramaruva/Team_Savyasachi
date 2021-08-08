@@ -83,7 +83,7 @@ function Pages(){
                 </Button>
             </div>
             </div>
-            <img src="/quiz.svg" className="banner" alt="quiz img" />
+            <img src="/quiz_setting.svg" className="banner" alt="quiz img" />
         </div>
     )
 }
