@@ -79,8 +79,6 @@ export  function VideoModal(init) {
 
   }
 
-   
-  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -112,15 +110,11 @@ export  function VideoModal(init) {
                 variant="outlined"
                 required
                 fullWidth
-                type="file"
-
                 name="video"
                 onChange={handleChange}
                 value={video}
-
                  ref={videoup}
                 name="video"
-
                 autoComplete="video"
               /> */}
               <input type="file" accept="video/mp4,video/x-m4v,video/*"  ref={videoup} />
