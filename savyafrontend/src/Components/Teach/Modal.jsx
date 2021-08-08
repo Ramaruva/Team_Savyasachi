@@ -71,8 +71,11 @@ export  function VideoModal(init) {
         description,
         authorID
     }
+
+
     dispatch(PostVideo(payload))
    console.log(payload)
+
 
   }
 
@@ -109,15 +112,16 @@ export  function VideoModal(init) {
                 variant="outlined"
                 required
                 fullWidth
-                type="file"
-<<<<<<< HEAD
+
                 name="video"
                 onChange={handleChange}
                 value={video}
-=======
+
                  ref={videoup}
                 name="video"
->>>>>>> 60a6569ab93a7bde63c81e61c05086714aaa8e66
+
+
+              
                 autoComplete="video"
               /> */}
               <input type="file" accept="video/mp4,video/x-m4v,video/*"  ref={videoup} />

@@ -14,7 +14,7 @@ export const Video = () => {
 
     const { vdata } = useSelector(state => state.video)
     
-    console.log(vdata[0].authorID)
+   // console.log(vdata[0].authorID)
 
     useEffect(() => {
         getVideoData();
