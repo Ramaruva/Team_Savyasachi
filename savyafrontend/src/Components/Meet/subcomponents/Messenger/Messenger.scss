@@ -1,0 +1,107 @@
+.messenger_container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #fff;
+    height: calc(100vh - 90px);
+    width: 350px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    .messenger_header {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0;
+      h3 {
+        margin: 0;
+        font-weight: 400;
+      }
+      .icon {
+        cursor: pointer;
+        font-size: 20px;
+      }
+    }
+    .messenger_header_tabs {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #eeeeee;
+      .tab {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        color: #555555;
+        p {
+          margin-left: 10px;
+        }
+        &.active {
+          border-bottom: 2px solid #04796a;
+          color: #04796a;
+        }
+        &:hover {
+          cursor: pointer;
+          background: rgba(0, 121, 107, 0.039);
+        }
+      }
+    }
+    .chat_section {
+      padding: 20px;
+      flex: 1;
+      overflow-y: scroll;
+      .chat_block {
+        margin-bottom: 30px;
+        .sender {
+          font-weight: 500;
+          font-size: 14px;
+          small {
+            margin-left: 5px;
+            font-weight: 300;
+          }
+        }
+        .msg {
+          margin: 0;
+          padding-top: 5px;
+          color: #555555;
+          font-size: 14px;
+        }
+      }
+    }
+    .send_msg_section {
+      padding: 20px;
+      
+      border-top: 1px solid #eeeeee;
+      border-bottom: 1px solid #eeeeee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #555;
+      input {
+        padding: 5px;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid #eeeeee;
+        width: 80%;
+      }
+      .icon {
+        cursor: pointer;
+        &:hover {
+          color: #04796a;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 700px){
+    .messenger_container {
+        margin-top: 150px;
+       position:absolute;
+       left:2;
+       right:2;
+       margin-right: 20px;
+         width:40vh;
+         height: 50vh
+    }
+  }

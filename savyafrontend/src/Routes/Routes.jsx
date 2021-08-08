@@ -14,6 +14,8 @@ import { Teach } from "../Components/Teach/Teach";
 import { Learn } from "../Components/Learn/Learn";
 import { Video } from "../Components/Video/Video";
 import VideoChatApp from "../Components/VideoChat/VideoChatApp";
+import CallPage from "../Components/Meet/CallPage/CallPage"
+import HomePage from "../Components/Meet/HomePage/HomePage"
 
 export const Routes = () => {
 	return (
@@ -51,7 +53,13 @@ export const Routes = () => {
                 <Route path="/videoapp">
                     <VideoApp />
                 </Route>
-               
+                <Route exact path="/meet">
+                    <HomePage/>
+                </Route>
+                
+                <Route exact path="/meet/:id">
+                    <CallPage/>
+                </Route>
 				<Route>
 					<h2>Page Not found</h2>
 				</Route>
